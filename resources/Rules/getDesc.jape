@@ -1,0 +1,13 @@
+Phase:GetName
+Input: Lookup Token SpaceToken Color Tag Type
+Options: control = appelt
+
+Rule: splits
+(
+(({Token, Token notWithin{Tag},Token notWithin{Type},Token.category!=punctuation,
+Token notWithin{Color},Token.string!="with"})+({SpaceToken})*)+
+)
+:r
+-->
+:r.Desc={string=:r@string}
+

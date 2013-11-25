@@ -1,0 +1,204 @@
+Phase:GetFeatures
+Input: Lookup Token SpaceToken Her
+Options: control = appelt
+
+Rule: splits
+(
+({Token.string=="CARE"}{SpaceToken}{Token.string=="INSTRUCTIONS"}|
+{Token.string=="care"}{SpaceToken}{Token.string=="instructions"}|
+{Token.string=="Care"}{SpaceToken}{Token.string=="Instructions"})
+({Token.string==":"}|{Token.string=="-"})
+({SpaceToken})?
+(({Token,!Lookup,Token.string!="*"}({SpaceToken})?)+):val
+)
+:r
+-->
+:r.CARE_INSTRUCTIONS={string=:val@string}
+
+Rule: splits
+(
+({Token.string=="material"}|{Token.string=="MATERIAL"}|{Token.string=="Material"}|{Token.string=="Fabrics"}
+|{Token.string=="fabrics"}|{Token.string=="FABRICS"})
+({Token.string==":"}|{Token.string=="-"})
+({SpaceToken})?
+(({Token,!Lookup,Token.string!="*"}({SpaceToken})?)+):val
+)
+:r
+-->
+:r.MATERIAL={string=:val@string}
+
+Rule: splits
+(
+({Token.string=="model"}{SpaceToken}{Token.string=="wearing"}{SpaceToken}{Token.string=="size"}|
+{Token.string=="Model"}{SpaceToken}{Token.string=="wearing"}{SpaceToken}{Token.string=="size"}|
+{Token.string=="MODEL"}{SpaceToken}{Token.string=="WEARING"}{SpaceToken}{Token.string=="SIZE"})
+({Token.string==":"}|{Token.string=="-"})
+({SpaceToken})?
+({Token,!Lookup,!Her,Token.string!="Her",Token.string!="*"}({SpaceToken})?
+({Token.string=="Months"}|{Token.string=="SIZE"}|{Token.string=="Size"}|{Token.string=="SIze"})?):val
+)
+:r
+-->
+:r.MODEL_WEARING_SIZE={string=:val@string}
+
+Rule: splits
+(
+({Token.string=="model"}{SpaceToken}{Token.string=="specs"}|
+{Token.string=="Model"}{SpaceToken}{Token.string=="Specs"}|
+{Token.string=="MODEL"}{SpaceToken}{Token.string=="SPECS"})
+({Token.string==":"}|{Token.string=="-"})
+({SpaceToken})?
+(({Token,Token.string!="Her",!Lookup,!Her,Token.string!="*"}({SpaceToken})?)+):val
+)
+:r
+-->
+:r.MODEL_SPECS={string=:val@string}
+
+Rule: splits
+(
+({Token.string=="manufacturer"}|{Token.string=="MANUFACTURER"}|{Token.string=="Manufacturer"})
+({Token.string==":"}|{Token.string=="-"})
+({SpaceToken})?
+(({Token,!Lookup,Token.string!="*"}({SpaceToken})?)+):val
+)
+:r
+-->
+:r.MANUFACTURER={string=:val@string}
+
+Rule: splits
+(
+({Token.string=="chest"}|{Token.string=="CHEST"}|{Token.string=="Chest"})
+({Token.string==":"}|{Token.string=="-"})
+({SpaceToken})?
+(({Token,!Lookup,Token.string!="*"}({SpaceToken})?)+):val
+)
+:r
+-->
+:r.Chest={string=:val@string}
+
+Rule: splits
+(
+({Token.string=="height"}|{Token.string=="HEIGHT"}|{Token.string=="Height"})
+({Token.string==":"}|{Token.string=="-"})
+({SpaceToken})?
+(({Token,!Lookup,Token.string!="*"}({SpaceToken})?)+):val
+)
+:r
+-->
+:r.Height={string=:val@string}
+
+Rule: splits
+(
+({Token.string=="season"}|{Token.string=="SEASON"}|{Token.string=="Season"})
+({Token.string==":"}|{Token.string=="-"})
+({SpaceToken})?
+(({Token,!Lookup,Token.string!="*"}({SpaceToken})?)+):val
+)
+:r
+-->
+:r.Season={string=:val@string}
+
+Rule: splits
+(
+({Token.string=="tags"}|{Token.string=="TAGS"}|{Token.string=="Tags"})
+({Token.string==":"}|{Token.string=="-"})
+({SpaceToken})?
+(({Token,!Lookup,Token.string!="*"}({SpaceToken})?)+):val
+)
+:r
+-->
+:r.Tags={string=:val@string}
+
+Rule: splits
+(
+({Token.string=="color"}|{Token.string=="COLOR"}|{Token.string=="Color"})
+({Token.string==":"}|{Token.string=="-"})
+({SpaceToken})?
+(({Token,!Lookup,Token.string!="*"}({SpaceToken})?)+):val
+)
+:r
+-->
+:r.Color={string=:val@string}
+
+Rule: splits
+(
+({Token.string=="made"}{SpaceToken}{Token.string=="in"}|
+{Token.string=="Made"}{SpaceToken}{Token.string=="in"}|
+{Token.string=="MADE"}{SpaceToken}{Token.string=="IN"}|
+{Token.string=="Made"}{SpaceToken}{Token.string=="In"})
+({Token.string==":"}|{Token.string=="-"})
+({SpaceToken})?
+(({Token,!Lookup,Token.string!="*"}({SpaceToken})?)+):val
+)
+:r
+-->
+:r.Made_in={string=:val@string}
+
+Rule: splits
+(
+({Token.string=="gender"}|{Token.string=="GENDER"}|{Token.string=="Gender"})
+({Token.string==":"}|{Token.string=="-"})
+({SpaceToken})?
+(({Token,!Lookup,Token.string!="*"}({SpaceToken})?)+):val
+)
+:r
+-->
+:r.GENDER={string=:val@string}
+
+Rule: splits
+(
+({Token.string=="name"}|{Token.string=="NAME"}|{Token.string=="Name"})
+({Token.string==":"}|{Token.string=="-"})
+({SpaceToken})?
+(({Token,!Lookup,Token.string!="*"}({SpaceToken})?)+):val
+)
+:r
+-->
+:r.Name={string=:val@string}
+
+Rule: splits
+(
+({Token.string=="description"}|{Token.string=="DESCRIPTION"}|{Token.string=="Description"})
+({Token.string==":"}|{Token.string=="-"})
+({SpaceToken})?
+(({Token,!Lookup,Token.string!="*"}({SpaceToken})?)+):val
+)
+:r
+-->
+:r.Description={string=:val@string}
+
+Rule: splits
+(
+({Token.string=="waist"}|{Token.string=="WAIST"}|{Token.string=="Waist"}|
+{Token.string=="waist-"}|{Token.string=="WAIST-"}|{Token.string=="Waist-"})
+({Token.string==":"}|{Token.string=="-"})?
+({SpaceToken})?
+(({Token,Token.string!=";",Token.string!=":",!Lookup,Token.string!="*"})+):val
+)
+:r
+-->
+:r.Waist={string=:val@string}
+
+Rule: splits
+(
+({Token.string=="bust"}|{Token.string=="BUST"}|{Token.string=="Bust"}|
+{Token.string=="bust-"}|{Token.string=="BUST-"}|{Token.string=="Bust-"})
+({Token.string==":"}|{Token.string=="-"})?
+({SpaceToken})?
+(({Token,Token.string!=";",Token.string!=":",!Lookup,Token.string!="*"})+):val
+)
+:r
+-->
+:r.Bust={string=:val@string}
+
+Rule: splits
+(
+({Token.string=="hips"}|{Token.string=="HIPS"}|{Token.string=="Hips"}|
+{Token.string=="hips-"}|{Token.string=="HIPS-"}|{Token.string=="Hips-"})
+({Token.string==":"}|{Token.string=="-"})?
+({SpaceToken})?
+(({Token,Token.string!=";",Token.string!=":",!Lookup,Token.string!="*"})+):val
+)
+:r
+-->
+:r.Hips={string=:val@string}

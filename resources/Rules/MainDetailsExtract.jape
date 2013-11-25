@@ -1,0 +1,11 @@
+MultiPhase: FeatureExtraction
+Phases:
+getColorFinal
+getTagFinal
+getTypeFinal
+getDescFinal
+1
+getColumns
+getColumnsFromDesc
+2
+getNumOfPieces

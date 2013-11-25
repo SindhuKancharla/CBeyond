@@ -1,0 +1,23 @@
+Phase:GetFeatures
+Input: Sentence Lookup Token SpaceToken
+Options: control = appelt
+
+Rule: splits
+(
+({Lookup.majorType==feature}):loc
+({Token.string==":"}|{Token.string=="-"})
+((({SpaceToken})*{Token,!Lookup}({SpaceToken})*)+):val
+)
+:r
+-->
+:r.Feature={type=:loc@string,string=:val@string}
+
+Rule: splits
+(
+({Lookup.majorType==size}):loc
+({Token.string==":"}|{Token.string=="-"})?
+((({SpaceToken})*{Token,!Lookup}({SpaceToken})*)+):val
+)
+:r
+-->
+:r.Feature={type=:loc@string,string=:val@string}

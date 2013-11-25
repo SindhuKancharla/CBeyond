@@ -1,0 +1,26 @@
+Phase:GetName
+Input: Lookup Token SpaceToken 
+Options: control = appelt
+
+Macro: NEWLINE
+(
+  {SpaceToken.string == "\n"} |
+  {SpaceToken.string=="\n\r"} |
+  ({SpaceToken.string=="\n"}{SpaceToken.string=="\r"}) |
+  {SpaceToken.string=="\r\n"} |
+  ({SpaceToken.string=="\r"}{SpaceToken.string=="\n"})
+)
+
+
+Rule: splits
+(
+NEWLINE
+(({SpaceToken})*({Token})+({SpaceToken})*)*
+({Lookup.majorType==tag}):s
+)
+:c
+-->
+:c.tag={string=:s@string},
+:c.generic_keywords3={string=:s@string}
+
+

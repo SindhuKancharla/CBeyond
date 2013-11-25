@@ -1,0 +1,22 @@
+Phase:GetName
+Input: Lookup Token SpaceToken 
+Options: control = appelt
+
+Rule: splits
+(
+{Lookup.majorType==color}{SpaceToken}({Token.string=="And"}|{Token.string=="and"})
+{SpaceToken}{Lookup.majorType==color}
+)
+:c
+-->
+:c.Color={string=:c@string}
+:c.generic_keywords4={string=:c@string}
+
+Rule: splits
+(
+{Lookup.majorType==color}
+)
+:c
+-->
+:c.Color={string=:c@string}
+:c.generic_keywords4={string=:c@string}

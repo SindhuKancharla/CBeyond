@@ -1,0 +1,26 @@
+Phase:GetName
+Input: Lookup Token SpaceToken color tag type
+Options: control = appelt
+
+Macro: NEWLINE
+(
+  {SpaceToken.string == "\n"} |
+  {SpaceToken.string=="\n\r"} |
+  ({SpaceToken.string=="\n"}{SpaceToken.string=="\r"}) |
+  {SpaceToken.string=="\r\n"} |
+  ({SpaceToken.string=="\r"}{SpaceToken.string=="\n"})
+)
+
+Rule: splits
+(
+((({Token, Token notWithin{tag},Token notWithin{type},Token.category!=punctuation,
+Token notWithin{color},Token.string!="with"})+({SpaceToken})*)+):s
+NEWLINE
+)
+:r
+-->
+:r.generic_keywords1={string=:s@string}
+
+
+
+

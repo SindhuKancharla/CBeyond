@@ -1,0 +1,62 @@
+Phase:GetName
+Input: Lookup Token SpaceToken 
+Options: control = appelt
+
+Rule: splits
+(
+({Lookup.majorType==color}{SpaceToken}({Token.string=="And"}|{Token.string=="and"})
+{SpaceToken}{Lookup.majorType==color}):c
+({SpaceToken})*
+(({Lookup.majorType==tag})?):tag
+({SpaceToken})*
+((({Token})+({SpaceToken})*)*):desc
+({Lookup.majorType==type}):ty
+({SpaceToken})*
+((({Token})+({SpaceToken})*)+):desc1
+)
+:r
+-->
+:c.Color={string=:c@string},
+:tag.Tag={string=:tag@string},
+:desc.Desc={string=:desc@string},
+:desc1.Style={string=:desc1@string},
+:ty.Type={string=:ty@string}
+
+Rule: splits2
+(
+({Lookup.majorType==color}):c
+({SpaceToken})*
+(({Lookup.majorType==tag})?):tag
+({SpaceToken})*
+(({Token})+({SpaceToken})*):desc
+({Lookup.majorType==type}):ty
+({SpaceToken})*
+((({Token})+({SpaceToken})*)+):desc1
+)
+:r
+-->
+:c.Color={string=:c@string},
+:tag.Tag={string=:tag@string},
+:desc.Desc={string=:desc@string},
+:desc1.Style={string=:desc1@string},
+:ty.Type={string=:ty@string}
+
+Rule: splits3
+(
+(({Lookup.majorType==color})?):c
+({SpaceToken})*
+(({Token})+({SpaceToken})*):desc
+({SpaceToken})*
+({Lookup.majorType==tag}):tag
+({SpaceToken})*
+({Lookup.majorType==type}):ty
+({SpaceToken})*
+((({Token})+({SpaceToken})*)+):desc1
+)
+:r
+-->
+:c.Color={string=:c@string},
+:tag.Tag={string=:tag@string},
+:desc.Desc={string=:desc@string},
+:desc1.Style={string=:desc1@string},
+:ty.Type={string=:ty@string}

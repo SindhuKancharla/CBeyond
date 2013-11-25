@@ -1,0 +1,16 @@
+Phase:GetFeatures
+Input: Token SpaceToken bust waist hips
+Options: control = appelt
+
+
+Rule: s
+(
+{bust}
+(({SpaceToken})*({Token})*)+
+{waist}
+(({SpaceToken})*({Token})*)+
+{hips}
+)
+:r
+-->
+:r.generic_keywords5={string=:r@string}

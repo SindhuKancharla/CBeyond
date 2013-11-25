@@ -1,0 +1,11 @@
+Phase:GetName
+Input: Lookup Token SpaceToken 
+Options: control = appelt
+
+Rule: splits
+(
+{Lookup.majorType==type}
+)
+:c
+-->
+:c.Type={string=:c@string}

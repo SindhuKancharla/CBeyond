@@ -1,0 +1,14 @@
+Phase:GetFeatures
+Input: Lookup Token SpaceToken Her
+Options: control = appelt
+
+Rule: splits
+(
+({Token.kind==number}):val
+({SpaceToken})*
+({Token.string=="pair"}|{Token.string=="Pair"}|{Token.string=="Piece"}|{Token.string=="piece"}|{Token.string=="pc"}
+|{Token.string=="Pc"})
+)
+:r
+-->
+:r.number_of_pieces={string=:val@string}

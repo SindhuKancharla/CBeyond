@@ -1,0 +1,178 @@
+Phase:GetName
+Input: Lookup Token SpaceToken 
+Options: control = appelt
+
+
+Rule: splits
+(
+({Token.string=="color"}|{Token.string=="COLOR"}|{Token.string=="Color"})
+({Token.string==":"}|{Token.string=="-"})
+({SpaceToken})?
+(({Token,!Lookup,Token.string!="*"}({SpaceToken})?)+):val
+)
+:r
+-->
+:r.Color={string=:val@string}
+
+Rule: feature
+(
+{Lookup.majorType==special_size_type}
+)
+:c
+-->
+:c.special_size_type={string=:c@string}
+
+Rule: splits
+(
+({Token.string=="gender"}|{Token.string=="GENDER"}|{Token.string=="Gender"})
+({Token.string==":"}|{Token.string=="-"})
+({SpaceToken})?
+(({Token,!Lookup,Token.string!="*"}({SpaceToken})?)+):val
+)
+:r
+-->
+:r.GENDER={string=:val@string}
+
+Rule: feature
+(
+{Lookup.majorType==closure_type}
+)
+:c
+-->
+:c.closure_type={string=:c@string}
+
+Rule: feature
+(
+{Lookup.majorType==belt_style}
+)
+:c
+-->
+:c.belt_style={string=:c@string}
+
+Rule: feature
+(
+{Lookup.majorType==bottom_style}
+)
+:c
+-->
+:c.bottom_style={string=:c@string}
+
+Rule: feature
+(
+{Lookup.majorType==subject_character}
+)
+:c
+-->
+:c.subject_character={string=:c@string}
+
+Rule: feature
+(
+{Lookup.majorType==collar_style}
+)
+:c
+-->
+:c.collar_style={string=:c@string}
+
+Rule: feature
+(
+{Lookup.majorType==cup_size}
+)
+:c
+-->
+:c.cup_size={string=:c@string}
+
+Rule: feature
+(
+{Lookup.majorType==fabric_wash}
+)
+:c
+-->
+:c.fabric_wash={string=:c@string}
+
+Rule: feature
+(
+{Lookup.majorType==fit_type}
+)
+:c
+-->
+:c.fit_type={string=:c@string}
+
+Rule: feature
+(
+{Lookup.majorType==front_style}
+)
+:c
+-->
+:c.front_style={string=:c@string}
+
+Rule: feature
+(
+{Lookup.majorType==leg_style}
+)
+:c
+-->
+:c.leg_style={string=:c@string}
+
+Rule: feature
+(
+{Lookup.majorType==neck_style}
+)
+:c
+-->
+:c.neck_style={string=:c@string}
+
+Rule: feature
+(
+{Lookup.majorType==pattern_type}
+)
+:c
+-->
+:c.pattern_type={string=:c@string}
+
+Rule: feature
+(
+{Lookup.majorType==sleeve_type}
+)
+:c
+-->
+:c.sleeve_type={string=:c@string}
+
+Rule: feature
+(
+{Lookup.majorType==special_features}
+)
+:c
+-->
+:c.special_features={string=:c@string}
+
+Rule: feature
+(
+{Lookup.majorType==strap_type}
+)
+:c
+-->
+:c.strap_type={string=:c@string}
+
+Rule: feature
+(
+{Lookup.majorType==style_name}
+)
+:c
+-->
+:c.style_name={string=:c@string}
+
+Rule: feature
+(
+{Lookup.majorType==underwire_type}
+)
+:c
+-->
+:c.underwire_type={string=:c@string}
+
+Rule: feature
+(
+{Lookup.majorType==top_style}
+)
+:c
+-->
+:c.top_style={string=:c@string}

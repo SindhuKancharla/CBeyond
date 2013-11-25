@@ -1,0 +1,13 @@
+Phase:GetFeatures
+Input: Token SpaceToken
+Options: control = appelt
+
+Rule: splits
+(
+({Token.string=="-"})?
+{SpaceToken}
+{Token.string=="Her"}
+)
+:r
+-->
+:r.Her={string=:r@string}

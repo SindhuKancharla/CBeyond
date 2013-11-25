@@ -1,0 +1,8 @@
+MultiPhase: FeatureExtraction
+Phases:
+
+getColor
+getTagNType
+getType
+getOthers
+getDesc

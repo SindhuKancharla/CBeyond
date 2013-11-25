@@ -1,0 +1,5 @@
+synonyms
+
+office  | office look | formal
+fashion | trendy
+party | special occasion | sparkly | princess | fairy
